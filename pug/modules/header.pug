@@ -1,0 +1,13 @@
+// Header
+include mixins
+-var mainList = ["Главная", "Услуги", "Магазин", "Блог", "Работы", "Контакты", "New"];
+
+header.header
+    div.container
+        div.header__logo-box
+            a(href="#").logo
+                img(src="img/main/logo.png" alt="Kreative Pixel").logo__img/
+        nav.header__main-nav-box
+            ul.main-nav
+                each item in mainList
+                    +mainMenuItem(item)
