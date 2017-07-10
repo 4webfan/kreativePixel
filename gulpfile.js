@@ -37,7 +37,7 @@ var cssmin      = require('gulp-cssmin');
 // pug
 var pug = require('gulp-pug');
 var htmlbeautify = require('gulp-html-beautify');
-
+//var htmlbeautify = require('gulp-jsbeautifier');
 // +--------------------------------------+
 // postCss
 var postcss       = require('gulp-postCss');
@@ -48,7 +48,7 @@ var postcssShort  = require('postcss-short');
 // +-------------- tasks -----------------+ 
 // + -------------------------------------+
 // serve - main task
-gulp.task('serve', function() {
+gulp.task('serve',  function() {
 
     browserSync.init({
         server: "./"
@@ -56,11 +56,11 @@ gulp.task('serve', function() {
 
     //gulp.watch("./css/less/*.less", ['cssmin']);
     gulp.watch("./pug/**/*.pug", ['pug']);                      // compiled pug files
-    gulp.watch("./css/in/**/*.css", ['postcss']);               // compiled pug files
+    gulp.watch("./css/in/**/*.css", ['postcss']);               // postcss processing css files
     gulp.watch("./css/out/styles.css", ['cssmin']);             // minified outer css
     gulp.watch("./*.html").on('change', browserSync.reload);    // reload for change .html files
     //gulp.watch(".js/*.js").on('change', browserSync.reload);  // reload for change .js files
-    gulp.watch("./*.html", ['htmlbeautify']);                   // Formatting html files (after compile any pug files)
+    gulp.watch("./*.html", ['htmlbeautify']);                 // Formatting html files (after compile any pug files)
 });
 
 // less
@@ -90,6 +90,9 @@ gulp.task('cssmin', function(){
 // compile pug
 gulp.task('pug', function() {
   return gulp.src("./pug/pages/*.pug")
+      .pipe(plumber({
+          errorHandler: notify.onError()
+      }))
       .pipe(pug({
           //basedir: __dirname,
           //pretty: '  '
@@ -104,9 +107,12 @@ gulp.task('postcss', ['cssconcat'], function () {
     var plugins = [
         postCssNested,
         postcssShort,
-        autoprefixer({browsers: ['last 2 version']})
+        autoprefixer({browsers: ['last 5 version']})
     ];
     return gulp.src('./css/in/styles.css')
+        .pipe(plumber({
+            errorHandler: notify.onError()
+        }))
         .pipe(postcss(plugins))
         .pipe(csscomb())
         .pipe(gulp.dest('./css/out'))
@@ -123,7 +129,18 @@ gulp.task('cssconcat', function() {
 // formatted html files
 gulp.task('htmlbeautify', function() {
     var options = {
-        indentSize: 2
+        indentSize: 2,
+        unformatted: [
+            // https://www.w3.org/TR/html5/dom.html#phrasing-content
+             'abbr', 'area', 'b', 'bdi', 'bdo', 'br', 'cite',
+            'code', 'data', 'datalist', 'del', 'dfn', 'em', 'embed', 'i', 'ins', 'kbd', 'keygen', 'map', 'mark', 'math', 'meter', 'noscript',
+            'object', 'output', 'progress', 'q', 'ruby', 's', 'samp', 'small',
+             'strong', 'sub', 'sup', 'template', 'time', 'u', 'var', 'wbr', 'text',
+            // prexisting - not sure of full effect of removing, leaving in
+            'acronym', 'address', 'big', 'dt', 'ins', 'strike', 'tt'
+        ]
+        //extra_liners: ['html', 'body', '/html', 'svg', '/svg', 'img', 'path']
+
     };
 gulp.src('./*.html')
     .pipe(htmlbeautify(options))
@@ -131,4 +148,4 @@ gulp.src('./*.html')
 });
 
 // default
-gulp.task('default', ['serve']);
+gulp.task('default', ['serve', 'pug', 'postcss', 'cssmin', 'htmlbeautify']);

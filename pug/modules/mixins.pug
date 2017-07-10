@@ -1,4 +1,20 @@
 //- main-menu-item
-mixin mainMenuItem(txt)
+mixin mainMenuItem(name, href)
     li.main-nav__item
-        a(href="#").main-nav__link= txt
+        a(href= href)&attributes(attributes).main-nav__link= name
+
+//- works item
+mixin worksItem(imgSrc, title, descr, path)
+    img(src=imgSrc alt="").works__img/
+    .works__over
+        .works__over-content
+            h4.works__title= title
+            .works__descript= descr
+        .more-info
+            a(href="#" data-zoom=path).more-info__link.more-info__link_zoom
+                svg
+                    use(xlink:href='#zoom-icon')/
+
+            a(href="#").more-info__link.more-info__link_share
+                svg
+                    use(xlink:href='#share-icon')/

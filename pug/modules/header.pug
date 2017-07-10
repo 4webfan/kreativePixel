@@ -1,6 +1,7 @@
 // Header
 include mixins
--var mainList = ["Главная", "Услуги", "Магазин", "Блог", "Работы", "Контакты", "New"];
+//-var mainList = ["Главная", "Услуги", "Магазин", "Блог", "Работы", "Контакты"];
+-var mainList = [{name: "Home", href:"index.html"}, {name: "Features", href:"features.html"}, {name: "Shop", href:"shop.html"}, { name: "Blog", href:"blog.html"}, {name: "Work", href:"#5"}, {name: "Contact", href:"#6"}];
 
 header.header
     div.container
@@ -9,5 +10,9 @@ header.header
                 img(src="img/main/logo.png" alt="Kreative Pixel").logo__img/
         nav.header__main-nav-box
             ul.main-nav
-                each item in mainList
-                    +mainMenuItem(item)
+                each item, index in mainList
+                    if pageId && index == pageId-1
+                        +mainMenuItem(item.name, item.href)(class="main-nav__link_active")
+                    else
+                        +mainMenuItem(item.name, item.href)
+
