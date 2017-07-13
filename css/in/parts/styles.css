@@ -52,7 +52,7 @@ button{
     margin: 0 auto;
     max-width: 1170px;
     padding: 0 15px;
-    /*border: 1px solid black;*/
+    position: relative;
 }
 /* header */
 .header{
@@ -63,6 +63,7 @@ button{
     background: rgba(0,0,0,0.75);
     position: absolute;
     top: 60px;
+    z-index: 10;
 
     &__logo-box{
         display: inline-block;
@@ -77,8 +78,67 @@ button{
         text-align : right;
         height: 75px;
     }
-    
 
+}
+
+.burger{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    display: none;
+    z-index: 11;
+
+    &_active .burger__line{
+        background: rgba(0,0,0,0);
+        /*transition: 0s ease 0.3s;*/
+
+        &::before, &::after{
+            top: 0;
+            transition: top 0.2s ease 0s, transform 0.3s ease 0.2s;
+        }
+        &::before{
+            transform: rotate(45deg);
+        }
+        &::after{
+            transform: rotate(-45deg);
+        }
+    }
+
+    &__line{
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 100%;
+        height: 2px;
+        background: white;
+        transition: 0s ease 0.25s;
+
+        &::before, &::after{
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+
+            transition: transform 0.3s ease 0s, top 0.2s ease 0.3s;
+        }
+        &::before{
+            top: -10px;
+        }
+        &::after{
+            top: 10px;
+        }
+    }
 }
 
 .main-nav{
@@ -129,7 +189,7 @@ button{
     }
     &_features{
         background: #e66768;
-        min-height: 450px; /*del*/
+        overflow: hidden;
     }
     &_works{
         background: #f6f1ed;
@@ -326,6 +386,8 @@ button{
         max-height: 250px;
         overflow: hidden;
         position: relative;
+        display: inline-block;
+        vertical-align: top;
 
         &:hover .works__over{
             transform: translate(0,0);
@@ -347,6 +409,10 @@ button{
         background: rgba(230, 103, 104, 0.7);
         transform: translate(0, 200%);
         transition: 0.5s ease-in-out;
+
+        &-content{
+            margin-top: 40px;
+        }
     }
     &__title{
         font: 400 22px/25px Lato, 'sans-serif';
@@ -361,8 +427,9 @@ button{
 }
 
 .more-info{
-    position: absolute;
-    bottom: 50px;
+    /*position: absolute;
+    bottom: 50px;*/
+    margin-top: 8%;
 
     &__link{
         display: inline-block;
@@ -372,7 +439,6 @@ button{
         border: 1px solid #fac81b;
         position: relative;
         transition: 0.25s ease;
-
 
         &_zoom{
 
@@ -450,7 +516,6 @@ button{
             width: 84px;
             height: 84px;
             border-radius: 50%;
-            /*border: 2px solid rgba(0,0,0,0);*/
             overflow: hidden;
             position: relative;
         }
@@ -480,8 +545,8 @@ button{
 /*contacts*/
 .contacts{
     max-width: 560px;
+    width: 560px; /* for ie */
     padding: 0 50px 23px;
-    /*margin: -100% auto;*/
     background: #e9696a;
     position: absolute;
     left: 0;
@@ -573,6 +638,279 @@ button{
 
         &:hover{
             opacity: 0.8;
+        }
+    }
+}
+
+/* footer */
+.footer{
+    background: #3d3d3d;
+
+    &-nav{
+        padding: 0;
+        font-size: 0;
+        list-style: none;
+        margin: 0 auto;
+        text-align: center;
+
+        &__item{
+            display: inline-block;
+            vertical-align: top;
+        }
+        &__link{
+            display: inline-block;
+            vertical-align: top;
+            color: #b1b1b1;
+            height: 50px;
+            line-height: 50px;
+            font-size: 13px;
+            padding: 0 20px;
+            transition: 0.25s ease;
+
+            &:hover{
+                color: white;
+            }
+        }
+
+        &-box{
+            border-bottom: 1px solid rgba(201,201,201, 0.2);
+        }
+
+    }
+
+    &__copyright{
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: #919191;
+        font-size: 13px;
+    }
+}
+
+
+/*========== Media ==========*/
+@media screen and (max-width: 1400px){
+    .header{
+        top: 0;
+    }
+
+    .section{
+        &_main{
+            min-height: 525px;
+            padding-top: 140px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .container{
+        max-width: 1100px;
+    }
+
+    .works{
+        &__item{
+            width: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: 1023px){
+    .container{
+        max-width: 768px;
+
+        &_blog{
+            max-width: 100%;
+        }
+    }
+    .section{
+        &_main{
+            background: #f6eee9 url(../../img/main/banner_min.jpg) no-repeat right bottom;
+        }
+    }
+    .header{
+        position: fixed;
+        top: 0;
+    }
+
+    .main-nav{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 100%;
+        background: black;
+        padding-left: 10px;
+        margin-top: 75px;
+        padding-top: 10px;
+        transition: 0.4s ease;
+        transform: translate(100%, 0);
+        z-index: 10;
+
+        &_active{
+            transform: translate(0, 0);
+        }
+
+        &__item{
+            display: block;
+            text-align: left;
+            height: 50px;
+            line-height: 50px;
+        }
+        &__link{
+            width: 100%;
+            max-width: 300px;
+            height: 50px;
+            line-height: 50px;
+            border-width: 2px;
+            padding: 0;
+        }
+    }
+
+    .features{
+        &__item{
+            width: 50%;
+            margin-bottom: 40px;
+        }
+    }
+
+    .button{
+        &_features{
+            margin-top: 15px;
+        }
+    }
+    .burger{
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 767px){
+
+    .container{
+        max-width: 500px;
+    }
+    .section{
+        &_main{
+            background: #f6eee9;
+        }
+    }
+    /*.more-info{
+        bottom: 30px;
+    }*/
+    .about{
+        margin: 0 auto;
+        text-align: center;
+        
+        &__descript{
+            margin: 33px auto 0;
+        }
+    }
+
+    .features{
+        &__item{
+            width: 100%;
+        }
+        &__descript{
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    }
+    .works{
+        &__over{
+            padding-bottom: 60px;
+        }
+    }
+    .posts{
+        flex-wrap: wrap;
+        
+        &__item{
+            width: 100%;
+            margin-top: 60px;
+
+            &:nth-child(1){
+                margin-top: 0;
+            }
+        }
+        &__cover{
+            text-align: center;
+        }
+
+    }
+}
+
+
+@media screen and (max-width: 600px){
+    .section{
+        &_map{
+            min-height: 300px;
+        }
+    }
+    .container{
+        &_contacts{
+            width: 100%;
+            max-width: inherit;
+            padding: 0;
+        }
+    }
+    .about{
+        &__title{
+            font-size: 27px;
+            line-height: 33px;
+        }
+    }
+    .header{
+        &__logo-box{
+            width: auto;
+        }
+    }
+    .works{
+        &__item{
+            width: 100%;
+        }
+    }
+    .logo{
+        max-width: 170px;
+
+        &__img{
+            width: 100%;
+        }
+    }
+
+    .contacts{
+        position: static;
+        width: 100%;
+        max-width: inherit;
+    }
+
+    .footer-nav-box{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .section{
+        &_main{
+            min-height: 500px;
+            padding-top: 120px;
+        }
+    }
+
+    .contacts{
+        padding: 0 50px 50px;
+    }
+
+    .contact-form{
+        &__col{
+            width: 100%;
+
+            &, &:nth-child(n){
+                padding: 0;
+            }
+            &:nth-child(2){
+                margin-top: 20px;
+            }
         }
     }
 }

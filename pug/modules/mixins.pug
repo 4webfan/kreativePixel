@@ -10,11 +10,11 @@ mixin worksItem(imgSrc, title, descr, path)
         .works__over-content
             h4.works__title= title
             .works__descript= descr
-        .more-info
-            a(href="#" data-zoom=path).more-info__link.more-info__link_zoom
-                svg
-                    use(xlink:href='#zoom-icon')/
+            .more-info
+                a(href="#" data-zoom=path).more-info__link.more-info__link_zoom
+                    svg
+                        use(xlink:href='#zoom-icon')/
 
-            a(href="#").more-info__link.more-info__link_share
-                svg
-                    use(xlink:href='#share-icon')/
+                a(href="#").more-info__link.more-info__link_share
+                    svg
+                        use(xlink:href='#share-icon')/
