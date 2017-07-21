@@ -508,6 +508,7 @@ button{
 .wrapp{
     min-height: 100%;
     padding-top: 1px;
+    overflow: hidden;
 }
 
 .container{
@@ -526,6 +527,12 @@ button{
     position: absolute;
     top: 60px;
     z-index: 10;
+    opacity: 0;
+    transition: 0.7s ease 0.3s;
+
+    &.inFocus{
+        opacity: 1;
+    }
 
     &__logo-box{
         display: inline-block;
@@ -648,10 +655,42 @@ button{
         background: #f6eee9 url(../../img/main/banner.jpg) no-repeat bottom center;
         background-size: contain;
         padding-top: 250px;
+
+        .about__title, .about__descript, .button{
+            opacity: 0;
+            animation-duration: 1s;
+            animation-delay: 0.8s;
+            animation-fill-mode: both;
+            transition: 0.8s ease 1s;
+        }
+
+        &.inFocus{
+            .about__title{
+                animation-name: bounceInLeft;
+                animation-duration: 0.6s;
+                opacity: 1;
+            }
+            .about__descript{
+                animation-name: bounceIn;
+                animation-duration: 0.8s;
+                opacity: 1;
+            }
+            .button{
+                animation-name: fadeIn;
+                opacity: 1;
+            }
+        }
     }
     &_features{
         background: #e66768;
         overflow: hidden;
+
+        &.inFocus{
+            .features__item{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     }
     &_works{
         background: #f6f1ed;
@@ -766,6 +805,10 @@ button{
     &__light{
         font-family: Lato;
     }
+
+    &.animation{
+        opacity: 0;
+    }
 }
 
 /* fuatures */
@@ -781,6 +824,22 @@ button{
         padding: 0 20px;
         text-align: center;
         padding-bottom: 40px;
+        opacity: 0;
+        transform: translateY(150%);
+        transition: transform 0.7s ease 0s, opacity 1s linear 0s;
+
+        &:nth-child(1){
+            transition-delay: 0s;
+        }
+        &:nth-child(2){
+            transition-delay: 0.15s;
+        }
+        &:nth-child(3){
+            transition-delay: 0.3s;
+        }
+        &:nth-child(4){
+            transition-delay: 0.45s;
+        }
 
 
         &:hover{
@@ -850,6 +909,8 @@ button{
         position: relative;
         display: inline-block;
         vertical-align: top;
+        opacity: 0;
+        transition: 0.8s ease;
 
         &:hover .works__over{
             transform: translate(0,0);
@@ -885,6 +946,37 @@ button{
         font: 14px/ 25px Lato, 'sans-serif';
         color: white;
         margin-top: 5px;
+    }
+
+    &.inFocus{
+        .works__item{
+            opacity: 1;
+
+            &:nth-child(1){
+                transition-delay: 0s;
+            }
+            &:nth-child(2){
+                transition-delay: 0.15s;
+            }
+            &:nth-child(3){
+                transition-delay: 0.3s;
+            }
+            &:nth-child(4){
+                transition-delay: 0.45s;
+            }
+            &:nth-child(5){
+                transition-delay: 0.6s;
+            }
+            &:nth-child(6){
+                transition-delay: 0.75s;
+            }
+            &:nth-child(7){
+                transition-delay: 0.9s;
+            }
+            &:nth-child(8){
+                transition-delay: 1.05s;
+            }
+        }
     }
 }
 
@@ -1254,6 +1346,13 @@ button{
     .section{
         &_main{
             background: #f6eee9;
+
+            &.inFocus{
+                .about__title, .about__descript, .button{
+                    animation: none;
+                    opacity: 1;
+                }
+            }
         }
     }
     /*.more-info{
@@ -1271,6 +1370,8 @@ button{
     .features{
         &__item{
             width: 100%;
+            opacity: 1;
+            transform: none;
         }
         &__descript{
             max-width: 350px;
@@ -1280,6 +1381,9 @@ button{
 
     }
     .works{
+        &__item{
+            opacity: 1;
+        }
         &__over{
             padding-bottom: 60px;
         }
@@ -1290,6 +1394,7 @@ button{
         &__item{
             width: 100%;
             margin-top: 60px;
+            opacity: 1;
 
             &:nth-child(1){
                 margin-top: 0;
@@ -1376,6 +1481,236 @@ button{
         }
     }
 }
+
+/* ========== animation ==========*/
+@keyframes rubber{
+    from {
+        transform: scale3d(1,1,1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40%{
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50%{
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    60%{
+        transform: scale3d(0.75, 1.1, 1);
+    }
+    75%{
+        transform: scale3d(1.1, 0.9, 1);
+    }
+
+    to{
+        transform: scale3d(1,1,1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceInLeft {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: translate3d(-3000px, 0, 0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(25px, 0, 0);
+    }
+
+    75% {
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    90% {
+        transform: translate3d(5px, 0, 0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+
+@keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+
+    40% {
+        transform: scale3d(.9, .9, .9);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+
+    80% {
+        transform: scale3d(.97, .97, .97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+@keyframes bounceInDown {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -3000px, 0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 25px, 0);
+    }
+
+    75% {
+        transform: translate3d(0, -10px, 0);
+    }
+
+    90% {
+        transform: translate3d(0, 5px, 0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+@keyframes bounceInLeft {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: translate3d(-3000px, 0, 0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(25px, 0, 0);
+    }
+
+    75% {
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    90% {
+        transform: translate3d(5px, 0, 0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+@keyframes bounceInRight {
+    from, 60%, 75%, 90%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    from {
+        opacity: 0;
+        transform: translate3d(3000px, 0, 0);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(-25px, 0, 0);
+    }
+
+    75% {
+        transform: translate3d(10px, 0, 0);
+    }
+
+    90% {
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    to {
+        transform: none;
+    }
+}
+/* ================================= */
+/* animation styles */
+.animation{
+    animation-duration: 1s;
+    animation-fill-mode: both;
+
+    &[data-animation-type]{
+        opacity:0;
+
+        &.inFocus{
+            opacity: 1;
+        }
+    }
+}
+@media screen and (max-width: 768px){
+    .animation{
+        animation: none !important;
+        &[data-animation-type] {
+            opacity: 1;
+        }
+    }
+}
+.rubber{
+    animation: rubber;
+}
+.opacity{
+    animation: opacity;
+}
+.fadeIn {
+    animation-name: fadeIn;
+}
+.bounceInLeft{
+    animation-name: bounceInLeft;
+}
+
+.bounceIn{
+    animation-name: bounceIn;
+}
+.bounceInLeft{
+    animation-name: bounceInLeft;
+}
+.bounceInRight{
+    animation-name: bounceInRight;
+}
+.bounceInDown{
+    animation-name: bounceInDown;
+}
+
+
+
 
 
 

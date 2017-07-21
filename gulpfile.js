@@ -148,4 +148,4 @@ gulp.src('./*.html')
 });
 
 // default
-gulp.task('default', ['serve', 'pug', 'postcss', 'cssmin', 'htmlbeautify']);
+gulp.task('default', ['serve', 'pug', 'postcss', 'cssmin']);

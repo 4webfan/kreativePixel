@@ -12,7 +12,7 @@
 <body>
     <div class="wrapp">
         <!-- Header-->
-        <header class="header">
+        <header class="header animation">
             <div class="container">
                 <div class="header__logo-box">
                     <a class="logo" href="#">
@@ -22,22 +22,19 @@
                 <nav class="header__main-nav-box">
                     <ul class="main-nav">
                         <li class="main-nav__item">
-                            <a class="main-nav__link main-nav__link_active" href="index.html">Home</a>
+                            <a class="main-nav__link main-nav__link_active" href="#main">Home</a>
                         </li>
                         <li class="main-nav__item">
-                            <a class="main-nav__link" href="features.html">Features</a>
+                            <a class="main-nav__link" href="#features">Features</a>
                         </li>
                         <li class="main-nav__item">
-                            <a class="main-nav__link" href="shop.html">Shop</a>
+                            <a class="main-nav__link" href="#works">Work</a>
                         </li>
                         <li class="main-nav__item">
-                            <a class="main-nav__link" href="blog.html">Blog</a>
+                            <a class="main-nav__link" href="#blog">Blog</a>
                         </li>
                         <li class="main-nav__item">
-                            <a class="main-nav__link" href="#5">Work</a>
-                        </li>
-                        <li class="main-nav__item">
-                            <a class="main-nav__link" href="#6">Contact</a>
+                            <a class="main-nav__link" href="#contacts">Contact</a>
                         </li>
                     </ul>
                 </nav>
@@ -68,7 +65,7 @@
             </g>
         </svg>
         <!-- main section-->
-        <div class="section section_main">
+        <div class="section section_main animation" id="main">
             <div class="container">
                 <div class="about">
                     <h1 class="about__title">We Design
@@ -81,9 +78,9 @@
             </div>
         </div>
         <!-- features section-->
-        <div class="section section_features">
+        <div class="section section_features animation" id="features">
             <div class="container">
-                <h2 class="title">
+                <h2 class="title animation" data-animation-type="fadeIn">
                     <span class="title__light">Check Out</span> Features</h2>
                 <div class="features">
                     <!-- item-->
@@ -145,12 +142,12 @@
             </div>
         </div>
         <!-- Latest Works-->
-        <div class="section section_works">
+        <div class="section section_works" id="works">
             <div class="container">
-                <h2 class="title">
+                <h2 class="title animation" data-animation-type="fadeIn">
                     <span class="title__light">Our Latest</span> Works</h2>
             </div>
-            <div class="works">
+            <div class="works animation">
                 <div class="works__item">
                     <img class="works__img" src="img/content/img1.jpg" alt="" />
                     <div class="works__over">
@@ -322,12 +319,12 @@
             </div>
         </div>
         <!-- Blog Posts-->
-        <div class="section section_blog">
+        <div class="section section_blog animated" id="blog">
             <div class="container container_blog">
-                <h2 class="title">
+                <h2 class="title animation" data-animation-type="fadeIn">
                     <span class="title__light">Recent</span> Blog Posts</h2>
                 <div class="posts">
-                    <a class="posts__item" href="#">
+                    <a class="posts__item animation" href="#" data-animation-type="bounceInLeft">
                         <div class="posts__cover">
                             <img class="posts__img" src="img/content/post1.jpg" alt="" />
                         </div>
@@ -339,7 +336,7 @@
                             <div class="posts__descript">Lorem ipsum dolor sit amet, consectetur adipiscing. Aliquam viverra dolor sit consectetur.</div>
                         </div>
                     </a>
-                    <a class="posts__item" href="#">
+                    <a class="posts__item animation" href="#" data-animation-type="bounceInDown">
                         <div class="posts__cover">
                             <img class="posts__img" src="img/content/post2.jpg" alt="" />
                         </div>
@@ -351,7 +348,7 @@
                             <div class="posts__descript">Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
                         </div>
                     </a>
-                    <a class="posts__item" href="#">
+                    <a class="posts__item animation" href="#" data-animation-type="bounceInRight">
                         <div class="posts__cover">
                             <img class="posts__img" src="img/content/post3.jpg" alt="" />
                         </div>
@@ -367,7 +364,7 @@
             </div>
         </div>
         <!-- maps with contacts-->
-        <div class="section section_contacts">
+        <div class="section section_contacts animation" data-animation-type="fadeIn" id="contacts">
             <div class="section_map" id="map"></div>
             <!-- contacts form-->
             <div class="container container_contacts">
@@ -431,6 +428,7 @@
             <div class="footer__copyright">KreativePixel © 2014 All Rights Reserved.</div>
         </div>
     </footer>
+    <script src="js/polifills.js"></script>
     <script src="js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6kKWl4z60M84nWwwKXk5uzVs43Yjz9I&amp;callback=initMap" async defer></script>
 </body>
