@@ -71,7 +71,7 @@
                     <h1 class="about__title">We Design
                         <span class="about__title-select"> Creative Website</span><br/>For Enterprising People</h1>
                     <div class="about__descript">Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Aliquam viverra consectetur nibh a blan dit. Proin at amet consectetur adipisc lacinia nunc.</div>
-                    <a class="button button_main" href="#">
+                    <a class="button button_main" id="viewProjects" href="#works">
                         <span class="button__txt">View Projects</span>
                     </a>
                 </div>
@@ -155,7 +155,7 @@
                             <h4 class="works__title">Work 1</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img1.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -176,7 +176,7 @@
                             <h4 class="works__title">Work 2</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img2.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -197,7 +197,7 @@
                             <h4 class="works__title">Work 3</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img3.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -218,7 +218,7 @@
                             <h4 class="works__title">Work 4</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img4.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -239,7 +239,7 @@
                             <h4 class="works__title">Work 5</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img5.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -260,7 +260,7 @@
                             <h4 class="works__title">Work 6</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img6.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -281,7 +281,7 @@
                             <h4 class="works__title">Work 7</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img7.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -302,7 +302,7 @@
                             <h4 class="works__title">Work 8</h4>
                             <div class="works__descript">Something more beautiful photos.</div>
                             <div class="more-info">
-                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/img1.jpg">
+                                <a class="more-info__link more-info__link_zoom" href="#" data-zoom="img/content/img8.jpg">
                                     <svg>
                                         <use xlink:href="#zoom-icon" />
                                     </svg>
@@ -369,7 +369,8 @@
             <!-- contacts form-->
             <div class="container container_contacts">
                 <div class="contacts">
-                    <h3 class="title">
+                    <a class="contacts__close" href="#"></a>
+                    <h3 class="title title_footer">
                         <span class="title__light">Contact Us</span> Now</h3>
                     <div class="contacts__content">
                         <div class="contacts__txt">Lorem ipsum address line1, address line 2</div>
@@ -405,22 +406,19 @@
         <nav class="footer-nav-box">
             <ul class="footer-nav container">
                 <li class="footer-nav__item">
-                    <a class="footer-nav__link" href="#">Home</a>
+                    <a class="footer-nav__link" href="#main">Home</a>
                 </li>
                 <li class="footer-nav__item">
-                    <a class="footer-nav__link" href="#">Features</a>
+                    <a class="footer-nav__link" href="#features">Features</a>
                 </li>
                 <li class="footer-nav__item">
-                    <a class="footer-nav__link" href="#">Shop</a>
+                    <a class="footer-nav__link" href="#works">Work</a>
                 </li>
                 <li class="footer-nav__item">
-                    <a class="footer-nav__link" href="#">Blog</a>
+                    <a class="footer-nav__link" href="#blog">Blog</a>
                 </li>
                 <li class="footer-nav__item">
-                    <a class="footer-nav__link" href="#">Work</a>
-                </li>
-                <li class="footer-nav__item">
-                    <a class="footer-nav__link" href="#">Contact</a>
+                    <a class="footer-nav__link" href="#contacts">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -428,9 +426,14 @@
             <div class="footer__copyright">KreativePixel © 2014 All Rights Reserved.</div>
         </div>
     </footer>
+    <div class="popup">
+        <div class="popup__content" style="color: white; font-size: 80px;">asdasdasd asdasda asdasd</div>
+        <a class="popup__close" href="#"></a>
+    </div>
+    <!--script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")-->
     <script src="js/polifills.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6kKWl4z60M84nWwwKXk5uzVs43Yjz9I&amp;callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX6kKWl4z60M84nWwwKXk5uzVs43Yjz9I&amp;callback=Main.Map" async defer></script>
 </body>
 
 </html>

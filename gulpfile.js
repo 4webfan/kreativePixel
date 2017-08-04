@@ -44,6 +44,8 @@ var postcss       = require('gulp-postCss');
 var autoprefixer  = require('autoprefixer');
 var postCssNested = require('postcss-nested');
 var postcssShort  = require('postcss-short');
+//var resembleImage = require('postcss-resemble-image');
+var resembleImage = require('postcss-resemble-image').default;
 
 // +-------------- tasks -----------------+ 
 // + -------------------------------------+

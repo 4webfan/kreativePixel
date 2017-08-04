@@ -40,7 +40,7 @@ block content
                 .about__descript
                     | Lorem ipsum dolor sit amet, consectetur adipisc ing elit. Aliquam viverra consectetur nibh a blan dit. Proin at amet consectetur adipisc lacinia nunc.
 
-                a.button.button_main(href="#")
+                a.button.button_main#viewProjects(href="#works")
                     span.button__txt View Projects
     // features section
     .section.section_features.animation#features
@@ -98,21 +98,21 @@ block content
                 |  Works
         .works.animation
             .works__item
-                +worksItem("img/content/img1.jpg", "Work 1", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img1.jpg", "Work 1", "Something more beautiful photos.", "img/content/img1.jpg")
             .works__item
-                +worksItem("img/content/img2.jpg", "Work 2", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img2.jpg", "Work 2", "Something more beautiful photos.", "img/content/img2.jpg")
             .works__item
-                +worksItem("img/content/img3.jpg", "Work 3", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img3.jpg", "Work 3", "Something more beautiful photos.", "img/content/img3.jpg")
             .works__item
-                +worksItem("img/content/img4.jpg", "Work 4", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img4.jpg", "Work 4", "Something more beautiful photos.", "img/content/img4.jpg")
             .works__item
-                +worksItem("img/content/img5.jpg", "Work 5", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img5.jpg", "Work 5", "Something more beautiful photos.", "img/content/img5.jpg")
             .works__item
-                +worksItem("img/content/img6.jpg", "Work 6", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img6.jpg", "Work 6", "Something more beautiful photos.", "img/content/img6.jpg")
             .works__item
-                +worksItem("img/content/img7.jpg", "Work 7", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img7.jpg", "Work 7", "Something more beautiful photos.", "img/content/img7.jpg")
             .works__item
-                +worksItem("img/content/img8.jpg", "Work 8", "Something more beautiful photos.", "img/img1.jpg")
+                +worksItem("img/content/img8.jpg", "Work 8", "Something more beautiful photos.", "img/content/img8.jpg")
     // Blog Posts
     .section.section_blog.animated#blog
         .container.container_blog
@@ -153,7 +153,8 @@ block content
         // contacts form
         .container.container_contacts
             .contacts
-                h3.title
+                a(href="#").contacts__close
+                h3.title.title_footer
                     span.title__light Contact Us
                     |  Now
                 .contacts__content

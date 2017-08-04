@@ -36,7 +36,9 @@ button{
     display: table;
     clear: both;
 }
-
+.body_hidden{
+  overflow: hidden;
+}
 .main{
     display: block;
     width: 1200px;
@@ -66,10 +68,16 @@ button{
     top: 60px;
     z-index: 10;
     opacity: 0;
-    transition: 0.7s ease 0.3s;
+    transition: opacity 0.7s ease 0.3s;
+    transform: translate3d(0, 0, 10px);
+    //transform: translateZ(1px);
 
     &.inFocus{
         opacity: 1;
+    }
+    &_fixed{
+      top: 0;
+      position: fixed;
     }
 
     &__logo-box{
@@ -167,8 +175,11 @@ button{
         border-bottom: 5px solid rgba(0,0,0,0);
         transition: 0.25s ease;
 
-        &:hover, &_active{
+        &_active{
             border-color: #e9696a;
+        }
+        &:hover{
+          color: #e9696a;
         }
     }
 
@@ -448,14 +459,26 @@ button{
         display: inline-block;
         vertical-align: top;
         opacity: 0;
+        background: #fc6263;
         transition: 0.8s ease;
 
         &:hover .works__over{
             transform: translate(0,0);
         }
+
+        &:nth-child(2n){
+          background: #bc2c2d;
+        }
+        &:nth-child(3n+2){
+          background: #cd4c4c;
+        }
+        &:nth-child(3n+3){
+          background: #8f4343;
+        }
     }
     &__img{
         max-width: 100%;
+        min-height: 150px;
     }
 
     &__over{
@@ -519,8 +542,6 @@ button{
 }
 
 .more-info{
-    /*position: absolute;
-    bottom: 50px;*/
     margin-top: 8%;
 
     &__link{
@@ -593,9 +614,11 @@ button{
     }
     &__cover{
         max-height: 212px;
+        /*background: #8f4343;*/
     }
     &__img{
         max-width: 100%;
+        min-height: 212px;
     }
     &__content{
         text-align: center;
@@ -616,6 +639,7 @@ button{
         border: 2px solid rgba(0,0,0,0);
         width: 82px;
         height: 82px;
+        /*background: #e66768;*/
         transition: 0.3s ease;
 
     }
@@ -645,6 +669,7 @@ button{
     right: 0;
     bottom: 0;
     margin: auto;
+    transition: 0.3s ease;
 
     &__content{
         margin-top: 25px;
@@ -668,6 +693,77 @@ button{
             border-bottom: 1px solid white;
         }
     }
+    &__close{
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      z-index: 1;
+      overflow: hidden;
+
+      &::before, &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 3px;
+        width: 28px;
+        background: #ecba0b;
+        transition: 0.3s linear 0s;
+      }
+
+      &::before{
+        transform: rotate(45deg);
+      }
+      &::after{
+        transform: rotate(-45deg);
+      }
+
+      &:hover{
+        &::before, &::after{
+          opacity: 0.8;
+        }
+      }
+    }
+
+    &_turn{
+
+      height: 130px !important;
+
+      .contacts__close{
+        animation-name: flash;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+
+        /*&::before, &::after{
+          top: -30px;
+        }*/
+        &::before{
+          right: -8px;
+          left: auto;
+        }
+        &::after{
+          left: -8px;
+          right: auto;
+        }
+
+      }
+    }
+}
+@keyframes flash{
+  from{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
 
 .contact-form{
@@ -778,12 +874,112 @@ button{
         font-size: 13px;
     }
 }
+.popup{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  opacity: 0;
+  z-index: 100;
+  transform: translate3d(0,-120%,0);
+  transition: 0.8s ease 0s, opacity 0s ease 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+  overflow-y: scroll;
+
+  &_visible{
+    animation-name: bounceInDown;
+    animation-duration: 1s;
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0,0,0);
+  }
+
+  &__content{
+    overflow: auto;
+  }
+
+  &__close{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 35px;
+    height: 35px;
+    z-index: 1;
+    overflow: hidden;
+
+    &::before, &::after{
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 3px;
+      width: 33px;
+      background: white;
+      transition: 0.3s linear 0s;
+    }
+
+    &::before{
+      transform: rotate(45deg);
+    }
+    &::after{
+      transform: rotate(-45deg);
+    }
+
+  }
+
+  &__img{
+    max-width: 100%;
+  }
+
+}
+.filter
+{
+  filter: url(../../img/filter.svg#blur); /* FF, IE10 & Opera */
+  /*-webkit-filter: blur(3px);*/
+}
+
+@keyframes bounceInDown {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: none;
+  }
+}
 
 
 /*========== Media ==========*/
 @media screen and (max-width: 1400px){
     .header{
         top: 0;
+        position: fixed;
     }
 
     .section{
@@ -828,18 +1024,23 @@ button{
         position: fixed;
         top: 0;
         right: 0;
-        width: 250px;
-        height: 100%;
+        /*width: 250px;*/
+        width: 40%;
+        /*height: 100%;*/
+        height: auto;
         background: black;
         padding-left: 10px;
         margin-top: 75px;
         padding-top: 10px;
+        padding-bottom: 20px;
         transition: 0.4s ease;
-        transform: translate(100%, 0);
+        //transform: translate(100%, 0);
+        transform: translate3d(100%, 0, 0);
         z-index: 10;
 
         &_active{
-            transform: translate(0, 0);
+            //transform: translate(0, 0);
+            transform: translate3d(0, 0, 0);
         }
 
         &__item{
@@ -847,6 +1048,7 @@ button{
             text-align: left;
             height: 50px;
             line-height: 50px;
+            max-width: 250px;
         }
         &__link{
             width: 100%;
@@ -893,9 +1095,15 @@ button{
             }
         }
     }
-    /*.more-info{
-        bottom: 30px;
-    }*/
+
+    .main-nav{
+      width: 50%;
+
+      &__item{
+        max-width: 210px;
+      }
+    }
+
     .about{
         margin: 0 auto;
         text-align: center;
@@ -942,6 +1150,9 @@ button{
             text-align: center;
         }
 
+    }
+    .contacts{
+      width: 100%;
     }
 }
 
@@ -992,8 +1203,21 @@ button{
     .footer-nav-box{
         display: none;
     }
-}
 
+    .popup__close{
+      top: 20px;
+      right: 12px;
+    }
+}
+@media screen and (max-width: 520px){
+  .main-nav{
+    width: 250px;
+
+    &__item{
+      max-width: 210px;
+    }
+  }
+}
 @media screen and (max-width: 480px){
     .section{
         &_main{
@@ -1018,8 +1242,22 @@ button{
             }
         }
     }
+    .title_footer{
+      font-size: 33px;
+      line-height: 37px;
+      padding-top: 60px;
+    }
 }
-
+@media screen and (max-width: 380px){
+  .contacts{
+    padding: 0 20px 50px;
+  }
+  .title_footer{
+    font-size: 33px;
+    line-height: 37px;
+    padding-top: 60px;
+  }
+}
 /* ========== animation ==========*/
 @keyframes rubber{
     from {
